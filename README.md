@@ -34,6 +34,14 @@ I would suggest leaving enough information on your site to highlight your past a
 
 Please think critically about how much information about yourself you would want to display on the open internet.
 
+## Privacy Part 2:
+Let's also think about this from the other side. We are advertising that our chatrooms are "private". However, as creator/owner of the website, you have complete and total view into the data that goes through your website (whether you view it in the database or pull it manually through your APIs).
+
+Are these chatrooms really private then? Through having a private conversation in this web app, you are essentially trusting the owner of the web app with the contents of your conversation (luckily, YOU own the website here). 
+
+Now think about it in a different context. Facebook, WhatsApp, Twitter, Discord, etc. Through using these services, you are trusting them to handle your data as well. 
+
+How would you change the app to guarantee privacy for your users?
 
 ## Objective
 ### Task
@@ -65,6 +73,20 @@ There is no starter code for this week. Instead you will be using the code from 
   * The top command is the instruction that starts our web server. Gunicorn is a Web Server Gateway Interface (or WSGI). It allows us to run python code in direct response to server requests.
     * gunicorn lab-app:app indicates that we want to run Gunicorn with the Python process in the `app` variable located inside the `lab-app` file.
   * The Procfile allows us to send commands to our Heroku server. The top one is to start the web server. The bottom 3 are necessary for us to run database migrations.
+
+* As a final step, we want to change our `.flaskenv` variable from
+```
+FLASK_ENV=development
+```
+to
+```
+FLASK_ENV=production
+```
+
+* PS: This is an example of Environment Variables that we talked about during lecture. If you ever want to do more local work, make sure to switch back to FLASK_ENV=development.
+  * If you find switching back and forth between the two to be annoying, there are alternatives to handling this manually. Feel free to reach out to me for these tweaks. 
+
+* QUICK EDIT: Make sure to add `SQLAlchemy==1.3.23` to your requirements.txt file. This is due to the breaking change that released on SQLAlchemy version 1.4 on March 16, 2021.
     
 * Commit all your changes and send it to your remote repo
   ```

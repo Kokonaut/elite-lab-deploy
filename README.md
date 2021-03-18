@@ -46,38 +46,13 @@ We will be using Heroku to deploy and host your websites. Heroku is a service fo
 
 Our usage of Heroku will be under the free version. You will need to create an account, but will NOT need payment info.
 
-There is no starter code for this week. Instead you will be using the code from last week. For those not complete, we will go over last week's lab prior to prepping you for deployment.
+There is no starter code for this week. Instead you will be using the code from last week.
 
 ## Lab Steps
 
 ### Prepping our web code
-* We need to install two new libraries into our dependencies. Add this code into requirements.txt file:
-```
-gunicorn==20.0.4
-psycopg2==2.8.4
-```
-
-* We also need to prepare our web app to work inside of a web server context.
-
-* This is already done for you from last week's starter code, but I want to highlight this. We must remove our hard defined Database URL. Instead of telling our app where our SQLite database is, we need to detect whether or not we want to override it.
-  * Inside of `app/__init__.py` replace lines 10-11:
-    ```
-    app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///' + \
-    os.path.join(basedir, '../app.db')
-    ```
-    with:
-    ```
-    database_url = os.environ.get('DATABASE_URL', None)
-
-    if database_url:
-      app.config['SQLALCHEMY_DATABASE_URI'] = database_url
-    else:
-      app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///' + \
-          os.path.join(basedir, '../app.db')
-    ```
-  * The above allows us to override the Database URL being used. This is neccessary since Heroku will tell us the Database info through the server environment (which we can check through os.environment).
     
-* As the final prep step prior to deployment, we must include a Procfile. This gives Heroku some instructions that will be necessary for us to manage our web app.
+* Prior to deployment, we must include a Procfile. This gives Heroku some instructions that will be necessary for us to manage our web app.
   * Create a file at the root of your project (top folder) called `Procfile`. Your Procfile should be next the the `README.md` and `lab-app.py` files.
   * Copy paste this text into the Procfile:
     ```

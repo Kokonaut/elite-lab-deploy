@@ -59,18 +59,7 @@ psycopg2==2.8.4
 
 * We also need to prepare our web app to work inside of a web server context.
 
-* First we must remove our hard defined URLs. Instead of defining baseUrl with our local url, we will read the URL of the current page
-  * Inside of `app/static/js/session.js` replace line 3:\
-    `var baseUrl = 'http://127.0.0.1:5000/';`\
-    with:\
-    `var baseUrl = window.location.origin;`
-    
-  * Inside of `app/static/js/chat.js` replace line 11:\
-    `var baseUrl = 'http://127.0.0.1:5000/';`\
-    with:\
-    `var baseUrl = window.location.origin;`
-
-* Next we must remove our hard defined Database URL. Instead of telling our app where our SQLite database is, we need to detect whether or not we want to override it.
+* This is already done for you from last week's starter code, but I want to highlight this. We must remove our hard defined Database URL. Instead of telling our app where our SQLite database is, we need to detect whether or not we want to override it.
   * Inside of `app/__init__.py` replace lines 10-11:
     ```
     app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///' + \
@@ -87,14 +76,6 @@ psycopg2==2.8.4
           os.path.join(basedir, '../app.db')
     ```
   * The above allows us to override the Database URL being used. This is neccessary since Heroku will tell us the Database info through the server environment (which we can check through os.environment).
- 
-* Two quick edits:
-  * In `app/models.py` on line 68, replace the model definition:\
-    `token = db.Column(db.String(16), index=True, unique=True)`\
-    with:\
-    `token = db.Column(db.String(24), index=True, unique=True)`\
-  * In `.gitignore`, remove this line (should be line 4):\
-    `migrations/`
     
 * As the final prep step prior to deployment, we must include a Procfile. This gives Heroku some instructions that will be necessary for us to manage our web app.
   * Create a file at the root of your project (top folder) called `Procfile`. Your Procfile should be next the the `README.md` and `lab-app.py` files.

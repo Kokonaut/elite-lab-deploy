@@ -157,3 +157,25 @@ The terms here are pretty confusing, but the gist is that you want to have Herok
 You must also indicate that you want your domain to point to your website.
 
 If you want to add your custom domain and are having trouble following these links (even after this class is over) feel completely free to contact me.
+
+## FAQ
+What does `git push heroku master` mean?
+* git: means you are running a git command. Similar to what we've done before.
+* push: means you want to upload your code somewhere
+* heroku: means you want to upload your code to the `heroku` remote repo. This remote repo is hosted by Heroku (not Github). You set up this remote repo when you run the `heroku git:remote -a {your-project-name}` command. Uploading your code here allows your Heroku server to access it.
+* master: This is the local branch you want to push to Heroku. Since master is your main version of your code, we want to push your master branch to Heroku.
+
+So this means I have 2 remote repos?
+* Yes, you have one in Github and one in Heroku now. Think of Heroku as your "production" code that has been released. Github is your main storage of your code.
+
+Why do I need to run `git push` before running `git push heroku master` then?
+* We do this so your Github repo and Heroku repo are in sync. If they are out of sync, then you might accidentally erase a version of your code in your Heroku repo. As long as you always keep your github repo updated, you will be safe from accidental deletions or modifications to your code.
+
+What is `heroku addons:add heroku-postgresql:hobby-dev` doing?
+* Heroku has a concept called addons. It allows us to easily add other pieces of hardware to our cloud application. In this case here, we want to add a database to our application (remember that a database is a separate piece of hardware from our web server).
+* `heroku-postgresql:hobby-dev`: this indicates that we want to add a postgreSQL database to our cloud application. Heroku provides one for us called `heroku-postgresql`. The `hobby-dev` means that we want to use the hobby-dev tier of database (meaning its slower and less powerful). This is the free version.
+
+Why is my website slow sometimes?
+* This is because we have created a Heroku application in the free tier. Since we aren't paying for it, we don't get as many of the benefits and have reduced capacity (it will still work reliably though).
+* A big effect from this is that we will occassionaly have "cold starts", where the website will occasionally take a long time to load. This is because, if we aren't using the server AND aren't paying for it, then Heroku will put it to sleep until we need it. If you visit the website after it hasn't been used for a while, Heroku needs to spend some extra time to "wake it up".
+* If you wish to develop more with Heroku and have faster servers without coldstarts, you will need to get onto one of the paid tiers.

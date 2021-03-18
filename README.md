@@ -61,6 +61,10 @@ There is no starter code for this week. Instead you will be using the code from 
     migrate: FLASK_APP=lab-app.py python3 -m flask db migrate
     upgrade: FLASK_APP=lab-app.py python3 -m flask db upgrade
     ```
+  * You might recognize the bottom 3 commands, these are the migration commands we use to start our db, create migrations, and perform migrations.
+  * The top command is the instruction that starts our web server. Gunicorn is a Web Server Gateway Interface (or WSGI). It allows us to run python code in direct response to server requests.
+    * gunicorn lab-app:app indicates that we want to run Gunicorn with the Python process in the `app` variable located inside the `lab-app` file.
+  * The Procfile allows us to send commands to our Heroku server. The top one is to start the web server. The bottom 3 are necessary for us to run database migrations.
     
 * Commit all your changes and send it to your remote repo
   ```

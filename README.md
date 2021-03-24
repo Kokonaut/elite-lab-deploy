@@ -96,8 +96,8 @@ FLASK_ENV=production
   ```
     
 ### Deploying to Heroku
-* First, we need to [create a Heroku account]
-[create a Heroku account]: https://signup.heroku.com/
+* First, we need to
+[create a Heroku account]: (https://signup.heroku.com/)
 
 * Follow the steps on that page and validate your email
 

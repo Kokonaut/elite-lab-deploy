@@ -59,7 +59,14 @@ There is no starter code for this week. Instead you will be using the code from 
 ## Lab Steps
 
 ### Prepping our web code
-    
+
+- We need to add two new dependencies that will help our Python code talk to the networking portion of our server and our database.
+  - Inside of requirements.txt, add these two lines at the bottom:
+  ```
+  gunicorn==20.0.4
+  psycopg2==2.8.4
+  ```    
+
 * Prior to deployment, we must include a Procfile. This gives Heroku some instructions that will be necessary for us to manage our web app.
   * Create a file at the root of your project (top folder) called `Procfile`. Your Procfile should be next the the `README.md` and `lab-app.py` files.
   * Copy paste this text into the Procfile:
@@ -85,9 +92,7 @@ FLASK_ENV=production
 
 * PS: This is an example of Environment Variables that we talked about during lecture. If you ever want to do more local work, make sure to switch back to FLASK_ENV=development.
   * If you find switching back and forth between the two to be annoying, there are alternatives to handling this manually. Feel free to reach out to me for these tweaks. 
-
-* QUICK EDIT: Make sure to add `SQLAlchemy==1.3.23` to your requirements.txt file. This is due to the breaking change that released on SQLAlchemy version 1.4 on March 16, 2021.
-    
+ 
 * Commit all your changes and send it to your remote repo
   ```
   git add -A
